@@ -1,12 +1,12 @@
 # Misc Utils
 
-Library packed with miscellaneous utilities.
+Library packed with miscellaneous utilities for godot.
 
 ## Usage
 
 1. Download and exact files.
-2. Place `misc_urtils` to `res;//addons/` directory in your project.
-3. Enable plugin in `Project > Project Settings > Plugins`.
+2. Place `misc_utils` to `res://addons/` directory in your project.
+3. Enable the plugin in `Project > Project Settings > Plugins`.
 
 ## License
 
