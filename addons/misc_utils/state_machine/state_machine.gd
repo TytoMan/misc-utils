@@ -6,42 +6,41 @@ signal exit_state(state: StateBase)
 
 @export var initial_state: StateBase
 
-var states: Array[StateBase]
 var current_state: StateBase
 
 
 func _ready() -> void:
-	assert(initial_state, "initial_state is null.")
-	current_state = initial_state
-	
-	_register_states()
-
-
-func _process(delta: float) -> void:
-	current_state._on_tick(delta)
-
-
-func _physics_process(delta: float) -> void:
-	current_state._on_physics_tick(delta)
+	_init_state_machine()
 
 
 func transit_state(next_state: StateBase) -> void:
 	assert(next_state, "An invalid state was specified for transit_state.")
-	current_state._on_exit()
-	exit_state.emit(current_state)
+	_state_exit_process()
 	current_state = next_state
-	enter_state.emit(current_state)
-	current_state._on_enter()
+	_state_enter_process()
 
 
-func _register_states() -> void:
+func _init_state_machine() -> void:
 	var children := get_children()
-	
 	for child in children:
 		if child is StateBase:
 			var state := child as StateBase
-			states.push_back(state)
-			state.state_machine = self as StateMachine
+			state.process_mode = Node.PROCESS_MODE_DISABLED
+			state.request_transit_state.connect(transit_state)
 			state._on_registered()
 	
-	assert(states, "There are no states in this state machine")
+	assert(initial_state, "initial_state is null.")
+	current_state = initial_state
+	_state_enter_process()
+
+
+func _state_enter_process() -> void:
+	current_state._on_state_enter()
+	enter_state.emit(current_state)
+	current_state.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _state_exit_process() -> void:
+	current_state.process_mode = Node.PROCESS_MODE_DISABLED
+	exit_state.emit(current_state)
+	current_state._on_state_exit()

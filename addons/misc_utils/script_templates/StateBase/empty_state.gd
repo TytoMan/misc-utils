@@ -1,21 +1,25 @@
 extends StateBase
 
 
+func _ready() -> void:
+	pass
+
+
+func _process(_delta: float) -> void:
+	pass
+
+
+func _physics_process(_delta: float) -> void:
+	pass
+
+
 func _on_registered() -> void:
 	pass
 
 
-func _on_enter() -> void:
+func _on_state_enter() -> void:
 	pass
 
 
-func _on_tick(delta: float) -> void:
-	pass
-
-
-func _on_physics_tick(delta: float) -> void:
-	pass
-
-
-func _on_exit() -> void:
+func _on_state_exit() -> void:
 	pass

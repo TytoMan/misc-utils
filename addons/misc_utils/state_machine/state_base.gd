@@ -1,28 +1,20 @@
 class_name StateBase extends Node
 
 
-var state_machine: StateMachine
+signal request_transit_state(next_state: StateBase)
 
 
 func transit_state(next_state: StateBase) -> void:
-	state_machine.transit_state(next_state)
+	request_transit_state.emit(next_state)
 
 
 func _on_registered() -> void:
 	pass
 
 
-func _on_enter() -> void:
+func _on_state_enter() -> void:
 	pass
 
 
-func _on_tick(delta: float) -> void:
-	pass
-
-
-func _on_physics_tick(delta: float) -> void:
-	pass
-
-
-func _on_exit() -> void:
+func _on_state_exit() -> void:
 	pass
