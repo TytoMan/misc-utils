@@ -1,4 +1,4 @@
-class_name Spectator extends Camera3D
+class_name Spectator3D extends Camera3D
 
 
 @export var move_speed: float = 6.0:
