@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 		rotation_degrees.x -= motion.relative.y * mouse_sensitivity.y
 		rotation_degrees.x = clampf(rotation_degrees.x, -85.0, 85.0)
 	
-	# Mouse buttons input.
+	# Mouse button inputs.
 	if event is InputEventMouseButton:
 		var button := event as InputEventMouseButton
 		if button.button_index == MOUSE_BUTTON_LEFT:

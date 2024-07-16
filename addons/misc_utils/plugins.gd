@@ -14,4 +14,3 @@ func _exit_tree() -> void:
 	remove_custom_type("Spectator")
 	remove_custom_type("StateBase")
 	remove_custom_type("StateMachine")
-

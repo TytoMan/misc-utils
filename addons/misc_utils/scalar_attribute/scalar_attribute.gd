@@ -1,9 +1,9 @@
 class_name ScalarAttribute extends RefCounted
 
 
-signal on_changed(delta: float)
-signal on_maximized
-signal on_minimized
+signal changed(delta: float)
+signal maximized
+signal minimized
 
 
 var max_value: float = 1.0:
@@ -22,11 +22,11 @@ var current_value: float:
 	set(value):
 		value = clampf(current_value, min_value, max_value)
 		if not is_equal_approx(value, current_value):
-			on_changed.emit(value - current_value)
+			changed.emit(value - current_value)
 			if is_equal_approx(value, max_value):
-				on_maximized.emit()
-			elif is_equal_approx(value, min_value):
-				on_minimized.emit()
+				maximized.emit()
+			if is_equal_approx(value, min_value):
+				minimized.emit()
 			current_value = value
 	get:
 		return current_value
