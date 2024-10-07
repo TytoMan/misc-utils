@@ -20,7 +20,7 @@ var min_value: float = 0.0:
 
 var current_value: float:
 	set(value):
-		value = clampf(current_value, min_value, max_value)
+		value = clampf(value, min_value, max_value)
 		if not is_equal_approx(value, current_value):
 			changed.emit(value - current_value)
 			if is_equal_approx(value, max_value):
